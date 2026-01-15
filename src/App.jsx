@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import PayslipGenerator from "./pages/Generator";
 import PayslipView from "./pages/PayslipView";
+import Signup from "./pages/Signup";
 
 
 import { AuthProvider } from "./context/AuthContext";
@@ -20,6 +21,8 @@ function App() {
 
             {/* Public */}
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+
 
             {/* Protected */}
             <Route

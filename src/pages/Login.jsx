@@ -65,6 +65,16 @@ const Login = () => {
 
               {error && <p className="error">{error}</p>}
 
+              <p style={{ marginTop: "10px" }}>
+                Don’t have an account?{" "}
+                <span
+                  style={{ color: "#007bff", cursor: "pointer" }}
+                  onClick={() => navigate("/signup")}
+                >
+                  Sign Up
+                </span>
+              </p> <br />
+
               <button type="submit">Login</button>
             </form>
           </div>

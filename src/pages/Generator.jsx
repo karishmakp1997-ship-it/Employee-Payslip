@@ -5,7 +5,6 @@ import { usePayslip } from "../context/PayslipContext";
 import { numberToWords } from "../utils/numberToWords";
 import logo from "../assets/VIS-LOGO.png";
 
-
 const Generator = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -54,7 +53,7 @@ const Generator = () => {
       <header className="top-nav">
         <div className="nav-left">
           <h2>VETRI IT SYSTEMS</h2>
-          <span>-Employee Payslip-</span>
+          <span>- Employee Payslip -</span>
         </div>
 
         <div className="nav-right">
@@ -69,15 +68,11 @@ const Generator = () => {
       <div className="generator-bg">
         <h1 className="page-title">EMPLOYEE PAYSLIP GENERATOR</h1>
 
-        {/* ================= CONTAINER ================= */}
         <div className="generator-card">
           {/* COMPANY HEADER */}
           <div className="company-row">
-
-            {/* LEFT SIDE */}
             <div className="company-left">
               <img src={logo} alt="Vetri IT Systems Logo" />
-
               <div className="company-info">
                 <h4>VETRI IT SYSTEMS PVT LTD.,</h4>
                 <p>
@@ -87,12 +82,11 @@ const Generator = () => {
               </div>
             </div>
 
-            {/* RIGHT SIDE */}
+            {/* PAY PERIOD */}
             <div className="month-box">
-              <span>Payslip for the Month <br /> <br /></span>
+              <span>Payslip for the Month</span>
               <input
-                type="text"
-                placeholder="October 2025"
+                type="month"
                 name="payPeriod"
                 value={form.payPeriod}
                 onChange={handleChange}
@@ -102,51 +96,71 @@ const Generator = () => {
 
           <hr className="light-hr" />
 
-
           {/* EMPLOYEE SUMMARY */}
           <h3 className="section-title">
             Employee Pay Summary<span className="required">*</span>
           </h3>
 
           <div className="pay-summary-grid">
-            {/* LEFT */}
             <div className="row">
               <span className="label">Employee Name</span>
               <span className="colon">:</span>
-              <input value={form.employeeName} onChange={handleChange} name="employeeName" />
+              <input
+                type="text"
+                name="employeeName"
+                value={form.employeeName}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="row">
               <span className="label">Paid Days</span>
               <span className="colon">:</span>
-              <input value={form.paidDays} onChange={handleChange} name="paidDays" />
+              <input
+                type="number"
+                min="0"
+                max="31"
+                name="paidDays"
+                value={form.paidDays}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="row">
               <span className="label">Employee ID</span>
               <span className="colon">:</span>
-              <input value={form.employeeId} onChange={handleChange} name="employeeId" />
+              <input
+                type="text"
+                name="employeeId"
+                value={form.employeeId}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="row">
               <span className="label">Loss of Pay Days</span>
               <span className="colon">:</span>
-              <input value={form.lopDays} onChange={handleChange} name="lopDays" />
-            </div>
-
-            <div className="row">
-              <span className="label">Pay Period</span>
-              <span className="colon">:</span>
-              <input value={form.payPeriod} onChange={handleChange} name="payPeriod" />
+              <input
+                type="number"
+                min="0"
+                max="31"
+                name="lopDays"
+                value={form.lopDays}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="row">
               <span className="label">Payment Date</span>
               <span className="colon">:</span>
-              <input value={form.paymentDate} onChange={handleChange} name="paymentDate" />
+              <input
+                type="date"
+                name="paymentDate"
+                value={form.paymentDate}
+                onChange={handleChange}
+              />
             </div>
           </div>
-
 
           {/* INCOME DETAILS */}
           <h3 className="section-title">Income Details</h3>
@@ -157,12 +171,22 @@ const Generator = () => {
 
               <div className="row">
                 <span>Basic</span>
-                <input name="basic" onChange={handleChange} />
+                <input
+                  type="number"
+                  name="basic"
+                  value={form.basic}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="row">
                 <span>Incentive</span>
-                <input name="incentive" onChange={handleChange} />
+                <input
+                  type="number"
+                  name="incentive"
+                  value={form.incentive}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="total purple">
@@ -175,7 +199,12 @@ const Generator = () => {
 
               <div className="row">
                 <span>Income Tax</span>
-                <input name="tax" onChange={handleChange} />
+                <input
+                  type="number"
+                  name="tax"
+                  value={form.tax}
+                  onChange={handleChange}
+                />
               </div>
 
               <div className="total purple">
@@ -184,7 +213,7 @@ const Generator = () => {
             </div>
           </div>
 
-         
+          {/* NET PAY */}
           <div className="netpay-box">
             <div>
               <h4>TOTAL NET PAYABLE</h4>
@@ -193,8 +222,9 @@ const Generator = () => {
             <div className="net-amount">₹ {netPay}</div>
           </div>
 
+          {/* AMOUNT IN WORDS */}
           <p className="amount-words">
-            Amount in words : Indian Rupee Fifteen Thousand Five Hundred Only
+            Amount in words : {numberToWords(netPay)}
           </p>
 
           <hr className="light-hr" />
@@ -202,7 +232,6 @@ const Generator = () => {
           <button className="generate-btn" onClick={handleGenerate}>
             Generate Payslip
           </button>
-
         </div>
       </div>
     </>
